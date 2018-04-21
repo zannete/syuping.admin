@@ -101,7 +101,7 @@
       <script src="{{ asset("/assets/common/js/common.js") }}"></script>
       <script src="{{ asset("/assets/common/js/demo.temp.js") }}"></script>
   </head>
-  <body class="theme-default">
+  <body class="theme-default mode-material">
     @include("inc.leftMenu")
     @include("inc.topMenu")
     

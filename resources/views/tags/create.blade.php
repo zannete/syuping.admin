@@ -18,7 +18,7 @@
         <h1>Add Tag</h1>
       </div>
     </div>
-    {!! Form::open(["action" => "TagsController@store"]) !!}
+    {!! Form::open(["action" => "TagsController@store", "method" => "POST"]) !!}
       <div class="row">
         <div class="col-lg-8">
           <div class="panel">
@@ -44,11 +44,9 @@
       </div>
       <hr/>
       <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-12">
           <a href="/tags" class="btn btn-clear">Cancel</a>
-        </div>
-        <div class="col-lg-6 text-right">
-          {{ Form::submit("Save Tag", ["class" => "btn btn-primary"]) }}
+          {{ Form::submit("Save Tag", ["class" => "btn btn-primary pull-right"]) }}
         </div>
       </div>
     {!! Form::close() !!}

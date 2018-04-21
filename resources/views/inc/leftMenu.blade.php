@@ -14,7 +14,7 @@
         <ul class="left-menu-list list-unstyled">
           <li><a class="left-menu-link" href="/products">All Products</a></li>
           <li><a class="left-menu-link" href="/products/inventory">Inventory</a></li>
-          <li><a class="left-menu-link" href="/products/collection">Collection</a></li>
+          <li><a class="left-menu-link" href="/collections">Collection</a></li>
           <li><a class="left-menu-link" href="/tags">Tags</a></li>
         </ul>
       </li>

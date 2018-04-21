@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 Route::resource("/products", "ProductsController");
 Route::resource("/tags", "TagsController");
+Route::resource("/collections", "CollectionsController");
 
 // Route::get("/products", function() {
 //   return view("pages.products");
