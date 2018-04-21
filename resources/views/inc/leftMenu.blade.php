@@ -2,7 +2,7 @@
   <div class="logo-container">
     <a href="index.html" class="logo">
       <img src="{{ asset("/assets/common/img/logo.png") }}" alt="Clean UI Admin Template" />
-      <img class="logo-inverse" src="../assets/common/img/logo-inverse.png" alt="Clean UI Admin Template" />
+      <img class="logo-inverse" src="{{ asset("/assets/common/img/logo-inverse.png") }}" alt="Clean UI Admin Template" />
     </a>
   </div>
   <div class="left-menu-inner scroll-pane">

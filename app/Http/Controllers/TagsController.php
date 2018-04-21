@@ -12,7 +12,7 @@ class TagsController extends Controller{
    * @return \Illuminate\Http\Response
    */
   public function index(){
-    $tags = Tag::orderBy("created_at", "desc")->get();
+    $tags = Tag::orderBy("created_at", "desc")->paginate(10);
     return view("tags.index")->with("tags", $tags);
   }
 
@@ -41,7 +41,7 @@ class TagsController extends Controller{
     $tag->description = $request->input("description");
     $tag->save();
 
-    return redirect("/tags")->with("success", "Tags created!");
+    return redirect("/tags")->with("success", "Tag created!");
   }
 
   /**
@@ -60,6 +60,8 @@ class TagsController extends Controller{
    * @return \Illuminate\Http\Response
    */
   public function edit($id){
+    $tag = Tag::find($id);
+    return view("tags.edit")->with("tag", $tag);
   }
 
   /**
@@ -70,6 +72,16 @@ class TagsController extends Controller{
    * @return \Illuminate\Http\Response
    */
   public function update(Request $request, $id){
+    $this->validate($request, [
+      "name" => "required"
+    ]);
+
+    $tag = Tag::find($id);
+    $tag->name = $request->input("name");
+    $tag->description = $request->input("description");
+    $tag->save();
+
+    return redirect("/tags")->with("success", "Tag updated!");
   }
 
   /**
@@ -79,5 +91,8 @@ class TagsController extends Controller{
    * @return \Illuminate\Http\Response
    */
   public function destroy($id){
+    $tag = Tag::find($id);
+    $tag->delete();
+    return redirect("/tags")->with("success", "Tag deleted!");
   }
 }

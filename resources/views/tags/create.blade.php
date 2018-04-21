@@ -35,9 +35,9 @@
           </div>
         </div>
         <div class="col-lg-4">
-          <div class="panel">
-            <div class="panel-body" style="margin-bottom: 120px">
-              <h5>Tag Image</h5>
+          <div class="panel" style="background: #f9fafb">
+            <div class="panel-body">
+              <p class="text-muted">Tag dapat Anda gunakan untuk mengelompokan barang berdasarkan jenis tertentu. Contoh: mengelompokan baju berdasarkan jenis kainnya.</p>
             </div>
           </div>
         </div>
@@ -45,7 +45,7 @@
       <hr/>
       <div class="row">
         <div class="col-lg-6">
-          {{ Form::button("Cancel", ["class" => "btn btn-clear"]) }}
+          <a href="/tags" class="btn btn-clear">Cancel</a>
         </div>
         <div class="col-lg-6 text-right">
           {{ Form::submit("Save Tag", ["class" => "btn btn-primary"]) }}
