@@ -9,11 +9,11 @@
     </div>
     <div class="row">
       <div class="col-lg-12">
-        <h1 class="pull-left">Tags</h1>
-        <a class="btn btn-primary pull-right" href="/tags/create">Create New Tag</a>
+        <h1 class="pull-left">Categories</h1>
+        <a href="/categories/create" class="btn btn-primary pull-right">Create New Category</a>
       </div>
     </div>
-    @if(count($tags) > 0)
+    @if(count($categories) > 0)
       <div class="row">
         <div class="col-lg-12">
           <div class="panel">
@@ -25,28 +25,25 @@
               <table class="table table-hover">
                 <thead>
                   <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Description</th>
+                    <td>#</td>
+                    <td>Name</td>
+                    <td>Description</td>
+                    <td>Products</td>
                   </tr>
                 </thead>
                 <tbody>
                   <?php $number = 0 ?>
-                  @foreach($tags as $tag)
+                  @foreach($categories as $category)
                     <?php $number++ ?>
                     <tr>
                       <td>{{ $number }}</td>
-                      <td><a href="/tags/{{$tag->id}}/edit">{{ $tag->name }}</a></td>
-                      <td>{{ $tag->description }}</td>
+                      <td><a href="/categories/{{ $category->id }}/edit">{{ $category->name }}</a></td>
+                      <td>{{ $category->description }}</td>
+                      <td>0 products in category</td>
                     </tr>
                   @endforeach
                 </tbody>
               </table>
-              <div class="row">
-                <div class="col-lg-12 text-center">
-                  {{ $tags->links() }}
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -54,7 +51,7 @@
     @else
       <div class="row">
         <div class="col-lg-12">
-          <p>No tags found.</p>
+          <p>No categories found.</p>
         </div>
       </div>
     @endif

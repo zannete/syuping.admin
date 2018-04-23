@@ -9,11 +9,11 @@
     </div>
     <div class="row">
       <div class="col-lg-12">
-        <h1 class="pull-left">Tags</h1>
-        <a class="btn btn-primary pull-right" href="/tags/create">Create New Tag</a>
+        <h1 class="pull-left">Vendors</h1>
+        <a href="/vendors/create" class="btn btn-primary pull-right">Create Vendor</a>
       </div>
     </div>
-    @if(count($tags) > 0)
+    @if(count($vendors) > 0)
       <div class="row">
         <div class="col-lg-12">
           <div class="panel">
@@ -25,26 +25,28 @@
               <table class="table table-hover">
                 <thead>
                   <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Description</th>
+                    <td>#</td>
+                    <td>Name</td>
+                    <td>Description</td>
+                    <td>Products</td>
                   </tr>
                 </thead>
                 <tbody>
-                  <?php $number = 0 ?>
-                  @foreach($tags as $tag)
+                  <?php $number = 0; ?>
+                  @foreach($vendors as $vendor)
                     <?php $number++ ?>
                     <tr>
                       <td>{{ $number }}</td>
-                      <td><a href="/tags/{{$tag->id}}/edit">{{ $tag->name }}</a></td>
-                      <td>{{ $tag->description }}</td>
+                      <td><a href="/vendors/{{ $vendor->id }}/edit">{{ $vendor->name }}</a></td>
+                      <td>{{ $vendor->description }}</td>
+                      <td>0 products</td>
                     </tr>
                   @endforeach
                 </tbody>
               </table>
               <div class="row">
                 <div class="col-lg-12 text-center">
-                  {{ $tags->links() }}
+                  {{ $vendors->links() }}
                 </div>
               </div>
             </div>
@@ -52,11 +54,7 @@
         </div>
       </div>
     @else
-      <div class="row">
-        <div class="col-lg-12">
-          <p>No tags found.</p>
-        </div>
-      </div>
+      <p>No vendors found</p>
     @endif
   </div>
 @endsection

@@ -15,14 +15,14 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
-            $table->string("title");
+            $table->string("name");
             $table->mediumText("description");
             $table->string("sku");
             $table->string("barcode");
             $table->integer("price");
             $table->boolean("isPhysicalProduct");
             $table->integer("weight");
-            $table->string("draft");
+            $table->string("status");
             $table->string("visibility");
             $table->dateTime("publishedDate");
             $table->timestamps();

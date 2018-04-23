@@ -4,8 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Tag extends Model{
+class Category extends Model{
   public function products(){
-    return $this->belongsToMany("App\Product");
+    return $this->hasMany("App\Product");
   }
 }

@@ -31,6 +31,32 @@ class ProductsController extends Controller
    * @return \Illuminate\Http\Response
    */
   public function store(Request $request){
+    $this->validate($request, [
+      "name" => "required",
+      "description" => "required",
+      "price" => "required",
+      "sku" => "required",
+      "barcode" => "required",
+      "option" => "required",
+      "optionValues" => "required",
+      "status" => "required",
+      "visibility" => "required",
+      "publishedDate" => "required"
+    ]);
+
+    $product = new Product;
+    $product->name = $request->input("name");
+    $product->price = $request->input("price");
+    $product->sku = $request->input("sku");
+    $product->barcode = $request->input("barcode");
+    $product->option = $request->input("option");
+    $product->optionValues = $request->input("optionValues")
+    $product->status = $request->input("status");
+    $product->visibility = $request->input("visibility");
+    $product->publishedDate = date("c");
+    $product->save();
+
+    return redirect("/products")->with("success", "Product added!");
   }
 
   /**

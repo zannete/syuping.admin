@@ -18,6 +18,8 @@ Route::get('/', function () {
 Route::resource("/products", "ProductsController");
 Route::resource("/tags", "TagsController");
 Route::resource("/collections", "CollectionsController");
+Route::resource("/vendors", "VendorsController");
+Route::resource("/categories", "CategoriesController");
 
 // Route::get("/products", function() {
 //   return view("pages.products");

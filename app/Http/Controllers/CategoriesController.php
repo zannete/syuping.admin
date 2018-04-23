@@ -3,17 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Collection;
+use App\Category;
 
-class CollectionsController extends Controller{
+class CategoriesController extends Controller{
   /**
    * Display a listing of the resource.
    *
    * @return \Illuminate\Http\Response
    */
   public function index(){
-    $collections = Collection::orderBy("created_at", "desc")->paginate(10);
-    return view("collections.index")->with("collections", $collections);
+    $categories = Category::orderBy("name", "asc")->paginate(10);
+    return view("categories.index")->with("categories", $categories);
   }
 
   /**
@@ -22,7 +22,7 @@ class CollectionsController extends Controller{
    * @return \Illuminate\Http\Response
    */
   public function create(){
-    return view("collections.create");
+    return view("categories.create");
   }
 
   /**
@@ -36,15 +36,12 @@ class CollectionsController extends Controller{
       "name" => "required"
     ]);
 
-    $collection = new Collection;
-    $collection->name = $request->input("name");
-    $collection->description = $request->input("description");
-    $collection->status = $request->input("status");
-    $collection->visibility = $request->input("visibility");
-    $collection->publishedDate = date("c");
-    $collection->save();
+    $category = new Category;
+    $category->name = $request->input("name");
+    $category->description = $request->input("description");
+    $category->save();
 
-    return redirect("/collections")->with("success", "Collection created!");
+    return redirect("/categories")->with("success", "Category created!");
   }
 
   /**
@@ -54,7 +51,6 @@ class CollectionsController extends Controller{
    * @return \Illuminate\Http\Response
    */
   public function show($id){
-    //
   }
 
   /**
@@ -64,8 +60,8 @@ class CollectionsController extends Controller{
    * @return \Illuminate\Http\Response
    */
   public function edit($id){
-    $collection = Collection::find($id);
-    return view("collections.edit")->with("collection", $collection);
+    $category = Category::find($id);
+    return view("categories.edit")->with("category", $category);
   }
 
   /**
@@ -76,7 +72,16 @@ class CollectionsController extends Controller{
    * @return \Illuminate\Http\Response
    */
   public function update(Request $request, $id){
-    //
+    $this->validate($request, [
+      "name" => "required"
+    ]);
+
+    $category = Category::find($id);
+    $category->name = $request->input("name");
+    $category->description = $request->input("description");
+    $category->save();
+
+    return redirect("/categories")->with("success", "Category updated!");
   }
 
   /**
@@ -86,8 +91,8 @@ class CollectionsController extends Controller{
    * @return \Illuminate\Http\Response
    */
   public function destroy($id){
-    $collection = Collection::find($id);
-    $collection->delete();
-    return redirect("/collections")->with("success", "Collection deleted!");
+    $category = Category::find($id);
+    $category->delete();
+    return redirect("/categories")->with("success", "Category deleted!");
   }
 }

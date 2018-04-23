@@ -2,11 +2,9 @@
 
 @section("content")
   <div class="row">
-    <div class="col-lg-6">
-      <h1>Products</h1>
-    </div>
-    <div class="col-lg-6 text-right">
-      <a class="btn btn-primary" href="/products/create">Add Product</a>
+    <div class="col-lg-12">
+      <h1 class="pull-left">Products</h1>
+      <a class="btn btn-primary pull-right" href="/products/create">Create New Product</a>
     </div>
   </div>
   <div class="row">

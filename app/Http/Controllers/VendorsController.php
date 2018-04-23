@@ -3,17 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Collection;
+use App\Vendor;
 
-class CollectionsController extends Controller{
+class VendorsController extends Controller{
   /**
    * Display a listing of the resource.
    *
    * @return \Illuminate\Http\Response
    */
   public function index(){
-    $collections = Collection::orderBy("created_at", "desc")->paginate(10);
-    return view("collections.index")->with("collections", $collections);
+    $vendors = Vendor::orderBy("name", "asc")->paginate(10);
+    return view("vendors.index")->with("vendors", $vendors);
   }
 
   /**
@@ -22,7 +22,7 @@ class CollectionsController extends Controller{
    * @return \Illuminate\Http\Response
    */
   public function create(){
-    return view("collections.create");
+    return view("vendors.create");
   }
 
   /**
@@ -36,15 +36,12 @@ class CollectionsController extends Controller{
       "name" => "required"
     ]);
 
-    $collection = new Collection;
-    $collection->name = $request->input("name");
-    $collection->description = $request->input("description");
-    $collection->status = $request->input("status");
-    $collection->visibility = $request->input("visibility");
-    $collection->publishedDate = date("c");
-    $collection->save();
+    $vendor = new Vendor;
+    $vendor->name = $request->input("name");
+    $vendor->description = $request->input("description");
+    $vendor->save();
 
-    return redirect("/collections")->with("success", "Collection created!");
+    return redirect("/vendors")->with("success", "Vendor created!");
   }
 
   /**
@@ -54,7 +51,6 @@ class CollectionsController extends Controller{
    * @return \Illuminate\Http\Response
    */
   public function show($id){
-    //
   }
 
   /**
@@ -64,8 +60,8 @@ class CollectionsController extends Controller{
    * @return \Illuminate\Http\Response
    */
   public function edit($id){
-    $collection = Collection::find($id);
-    return view("collections.edit")->with("collection", $collection);
+    $vendor = Vendor::find($id);
+    return view("vendors.edit")->with("vendor", $vendor);
   }
 
   /**
@@ -76,7 +72,16 @@ class CollectionsController extends Controller{
    * @return \Illuminate\Http\Response
    */
   public function update(Request $request, $id){
-    //
+    $this->validate($request, [
+      "name" => "required"
+    ]);
+
+    $vendor = Vendor::find($id);
+    $vendor->name = $request->input("name");
+    $vendor->description = $request->input("description");
+    $vendor->save();
+
+    return redirect("/vendors")->with("success", "Vendor udpated!");
   }
 
   /**
@@ -86,8 +91,8 @@ class CollectionsController extends Controller{
    * @return \Illuminate\Http\Response
    */
   public function destroy($id){
-    $collection = Collection::find($id);
-    $collection->delete();
-    return redirect("/collections")->with("success", "Collection deleted!");
+    $vendor = Vendor::find($id);
+    $vendor->delete();
+    return redirect("/vendors")->with("success", "Vendor deleted!");
   }
 }

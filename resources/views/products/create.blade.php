@@ -2,18 +2,24 @@
 
 @section("content")
   <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <a href="/products"><i class="fa fa-chevron-left"></i> Products</a>
+    {!! Form::open(["action" => "ProductsController@store", "method" => "POST"]) !!}
+      <div class="row">
+        <div class="col-lg-12">
+          <a href="/products"><i class="fa fa-chevron-left"></i> Products</a>
+        </div>
       </div>
-    </div>
-    <div style="margin: 16px"></div>
-    <div class="row">
-      <div class="col-lg-12">
-        <h1>Add Product</h1>
+      <div style="margin: 16px"></div>
+      <div class="row">
+        <div class="col-lg-12">
+          <h1 class="pull-left">Add Product</h1>
+          {{ Form::submit("Add Product", ["class" => "btn btn-primary pull-right"]) }}
+        </div>
       </div>
-    </div>
-    {!! Form::open(["url" => "ProductsController@store"]) !!}
+      <div class="row">
+        <div class="col-lg-12">
+          @include("inc.messages")
+        </div>
+      </div>
       <div class="row">
         <div class="col-lg-8">
           <div class="row">
@@ -21,8 +27,8 @@
               <div class="panel">
                 <div class="panel-body">
                   <div class="form-group">
-                    {{ Form::label("title", "Title") }}
-                    {{ Form::text("title", "", ["class" => "form-control", "placeholder" => "Baju Lengan Panjang"]) }}
+                    {{ Form::label("name", "Name") }}
+                    {{ Form::text("name", "", ["class" => "form-control", "placeholder" => "Baju Lengan Panjang"]) }}
                   </div>
                   <div class="form-group">
                     {{ Form::label("description", "Description") }}
@@ -186,10 +192,13 @@
                   <dl class="dl-horizontal">
                     <dt style="width: 90px">Status:</dt>
                     <dd style="margin-left: 100px">Draft <u style="margin-left: 8px"><a href="#">Edit</a></u></dd>
+                    {{ Form::hidden("status", "Draft") }}
                     <dt style="width: 90px">Visibility:</dt>
                     <dd style="margin-left: 100px">Public <u style="margin-left: 8px"><a href="#">Edit</a></u></dd>
+                    {{ Form::hidden("visibilty", "Public") }}
                     <dt style="width: 90px">Publish Date:</dt>
                     <dd style="margin-left: 100px">Sekarang juga. <u style="margin-left: 8px"><a href="#">Edit</a></u></dd>
+                    {{ Form::hidden("publishedDate", "now") }}
                   </dl>
                 </div>
               </div>
@@ -201,8 +210,8 @@
                 <div class="panel-body">
                   <h5>Organization</h5>
                   <div class="form-group">
-                    {{ Form::label("productType", "Product Type") }}
-                    {{ Form::select("productType", ["router" => "Router", "camera" => "Camera", "personalPC" => "Personal PC"], null, ["class" => "form-control selectpicker"]) }}
+                    {{ Form::label("category", "Product Category") }}
+                    {{ Form::select("category", ["router" => "Router", "camera" => "Camera", "personalPC" => "Personal PC"], null, ["class" => "form-control selectpicker"]) }}
                   </div>
                   <div class="form-group">
                     {{ Form::label("vendor", "Vendor") }}
@@ -231,6 +240,13 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      <hr/>
+      <div class="row">
+        <div class="col-lg-12">
+          <a href="/products" class="btn">Cancel</a>
+          {{ Form::submit("Add Product", ["class" => "btn btn-primary pull-right"]) }}
         </div>
       </div>
     {!! Form::close() !!}

@@ -16,6 +16,8 @@
           <li><a class="left-menu-link" href="/products/inventory">Inventory</a></li>
           <li><a class="left-menu-link" href="/collections">Collection</a></li>
           <li><a class="left-menu-link" href="/tags">Tags</a></li>
+          <li><a class="left-menu-link" href="/categories">Categories</a></li>
+          <li><a class="left-menu-link" href="/vendors">Vendors</a></li>
         </ul>
       </li>
     </ul>
